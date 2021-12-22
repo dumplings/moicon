@@ -4,6 +4,7 @@
   "description": "A modern solution for using SVG icons.",
   "main": "index.js",
   "scripts": {
+    "dev": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,10 @@
   },
   "homepage": "https://github.com/dumplings/moicon#readme",
   "dependencies": {
+    "@types/gulp": "^4.0.9",
     "gulp": "^4.0.2",
-    "gulp-cli": "^2.3.0"
+    "gulp-cli": "^2.3.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
   }
 }
