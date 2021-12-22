@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/dumplings/moicon/issues"
   },
-  "homepage": "https://github.com/dumplings/moicon#readme"
+  "homepage": "https://github.com/dumplings/moicon#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0"
+  }
 }
