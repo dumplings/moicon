@@ -23,5 +23,9 @@
     "gulp-cli": "^2.3.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2",
+    "ts-standard": "^11.0.0"
   }
 }
