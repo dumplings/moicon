@@ -17,5 +17,8 @@ module.exports = {
   ],
   rules: {
     'quote-props': ['error', 'as-needed'],
+    'object-curly-spacing': ['error', 'always'],
+    'sort-vars': 'error',
+    'max-len': ['error', { code: 120 }],
   },
 };

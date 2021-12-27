@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+  <title>联系我们</title>
+  <g id="12.1新增需求" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="需求5:整合药效团说明-hover" transform="translate(-1624.000000, -28.000000)" fill-rule="nonzero">
+      <g id="编组-2" transform="translate(1624.000000, 25.000000)">
+        <g id="联系我们" transform="translate(0.000000, 3.000000)">
+          <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+          <path d="M9.00365965,1 L9.00365965,3.01646844 L3.01646844,3.01646844 L3.01646844,12.9835316 L12.9835316,12.9835316 L12.9835316,7.0073193 L15,7.0073193 L15,15 L1,15 L1,1 L9.00365965,1 Z M13.0853797,1.36781336 L14.6380055,2.92045746 L6.43875572,11.1197255 L4.88611162,9.56706313 L13.0853797,1.36781336 Z" id="形状结合" fill="#131415"></path>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -31,5 +31,9 @@
   },
   "pre-commit": [
     "lint"
-  ]
+  ],
+  "dependencies": {
+    "svgo": "^2.8.0",
+    "xml2js": "^0.4.23"
+  }
 }
