@@ -9,7 +9,7 @@ const util = require('util');
  * @param {function} cb
  */
 async function defaultTask(cb) {
-  const rawData = fs.readFileSync(path.resolve(__dirname, './examples/svgs/edit.svg'));
+  const rawData = fs.readFileSync(path.resolve(__dirname, './examples/svgs/people.svg'));
   console.log(rawData.toString());
   console.log('-------------------------');
   const result = optimize(rawData, {
@@ -34,7 +34,10 @@ async function defaultTask(cb) {
   });
   console.log(result);
   console.log('-------------------------');
-  const result2 = await xml2js.parseStringPromise(result.data);
+  const result2 = await xml2js.parseStringPromise(result.data, {
+    explicitArray: false,
+    explicitRoot: false,
+  });
   console.log(util.inspect(result2, false, 4));
   cb();
 }
