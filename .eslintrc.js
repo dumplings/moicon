@@ -8,13 +8,9 @@ module.exports = {
   extends: [
     'google',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 13,
   },
-  plugins: [
-    '@typescript-eslint',
-  ],
   rules: {
     'quote-props': ['error', 'as-needed'],
     'object-curly-spacing': ['error', 'always'],
