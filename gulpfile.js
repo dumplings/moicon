@@ -9,7 +9,7 @@ const util = require('util');
  * @param {function} cb
  */
 async function defaultTask(cb) {
-  const rawData = fs.readFileSync(path.resolve(__dirname, './examples/svgs/people.svg'));
+  const rawData = fs.readFileSync(path.resolve(__dirname, './examples/svgs/close.svg'));
   console.log(rawData.toString());
   console.log('-------------------------');
   const result = optimize(rawData, {
@@ -27,7 +27,7 @@ async function defaultTask(cb) {
       {
         name: 'removeAttrs',
         params: {
-          attrs: '(fill|stroke)',
+          // attrs: '(fill|stroke)',
         },
       },
     ],
