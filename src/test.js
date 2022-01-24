@@ -3,13 +3,14 @@ const fs = require('fs');
 const svgo = require('svgo');
 const xml2js = require('xml2js');
 
-// const builder = new xml2js.Builder({ headless: true });
+const builder = new xml2js.Builder({ headless: true });
 
 /**
  * @param {string} filepath - svg files path
+ * @param {string} prefix - svg id`s prefix
  * @return {{colorful:boolean, data:string, id:string}[]}
  */
-const packageSvgList = (filepath) => {
+const packageSvgList = (filepath, prefix) => {
   const files = fs.readdirSync(path.resolve(filepath), { encoding: 'utf8', withFileTypes: true });
   const result = [];
 
@@ -19,7 +20,7 @@ const packageSvgList = (filepath) => {
     const colorful = /\.c.svg$/.test(file.name);
     const data = fs.readFileSync(path.join(filepath, file.name), { encoding: 'utf8' });
     // delete the colorful flag from filename
-    const id = file.name.substring(0, file.name.length - (colorful ? 6 : 4));
+    const id = `${prefix}-${file.name.substring(0, file.name.length - (colorful ? 6 : 4))}`;
 
     result.push({
       colorful,
@@ -49,16 +50,34 @@ const optimize = (file) => {
     });
   }
   return svgo.optimize(file.data, plugins).data;
+};
+
+const buildSymbolNode = (data, id) => {
+  const symbol = {};
+  for (const key in data) {
+    if (key === '$') {
+      symbol[key] = {
+        id,
+        viewBox: data[key].viewBox,
+      };
+    } else {
+      symbol[key] = data[key];
+    }
+  }
+  return builder.buildObject({ symbol });
 }
 
 // todo test function
-;(async () => {
-  const rootPath = path.resolve(__dirname, '../examples/svg/');
-  const svgList = packageSvgList(rootPath);
+;(async (rootPath, prefix) => {
+  let svgHtml = '<svg xmlns="http://www.w3.org/2000/svg" id="__MO_ICONS__" style="display:none">';
+  const svgList = packageSvgList(rootPath, prefix);
   for (const file of svgList) {
     const parseResult = await xml2js.parseStringPromise(optimize(file), {
       explicitRoot: false,
     });
-    console.log(parseResult);
+    const result = buildSymbolNode(parseResult, file.id);
+    svgHtml += result;
   }
-})();
+  svgHtml += '</svg>';
+  console.log(svgHtml);
+})(path.resolve(__dirname, '../examples/svg/'), 'mo');
