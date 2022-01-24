@@ -9,7 +9,7 @@ const util = require('util');
  * @param {function} cb
  */
 async function defaultTask(cb) {
-  const rawData = fs.readFileSync(path.resolve(__dirname, './examples/svgs/close.svg'));
+  const rawData = fs.readFileSync(path.resolve(__dirname, './examples/svg/close.svg'));
   console.log(rawData.toString());
   console.log('-------------------------');
   const result = optimize(rawData, {

@@ -4,7 +4,7 @@
   "description": "A modern solution for using SVG icons.",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp",
+    "dev": "nodemon src/test.js",
     "lint": "eslint . --ext .ts,.js --fix"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
+    "nodemon": "^2.0.15",
     "pre-commit": "^1.2.2"
   },
   "pre-commit": [
