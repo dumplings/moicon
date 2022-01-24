@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const svgo = require('svgo');
 const xml2js = require('xml2js');
+const { minify } = require('html-minifier');
 
 const builder = new xml2js.Builder({ headless: true });
 
@@ -79,5 +80,6 @@ const buildSymbolNode = (data, id) => {
     svgHtml += result;
   }
   svgHtml += '</svg>';
+  svgHtml = minify(svgHtml, { collapseWhitespace: true });
   console.log(svgHtml);
 })(path.resolve(__dirname, '../examples/svg/'), 'mo');
