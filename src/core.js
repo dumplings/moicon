@@ -9,9 +9,9 @@ const builder = new xml2js.Builder({ headless: true });
 /**
  * @param {string} filepath - svg files path
  * @param {string} prefix - svg id`s prefix
- * @return {{colorful:boolean, data:string, id:string}[]}
+ * @return {SvgPayload[]}
  */
-const packageSvgList = (filepath, prefix) => {
+const packagePayloadList = (filepath, prefix) => {
   const files = fs.readdirSync(path.resolve(filepath), { encoding: 'utf8', withFileTypes: true });
   const result = [];
 
@@ -23,18 +23,14 @@ const packageSvgList = (filepath, prefix) => {
     // delete the colorful flag from filename
     const id = `${prefix}-${file.name.substring(0, file.name.length - (colorful ? 6 : 4))}`;
 
-    result.push({
-      colorful,
-      data,
-      id,
-    });
+    result.push({ colorful, data, id });
   }
 
   return result;
 };
 
 /**
- * @param {{colorful:boolean, data:string}} file
+ * @param {SvgPayload} file
  * @return {string}
  */
 const optimize = (file) => {
@@ -53,6 +49,12 @@ const optimize = (file) => {
   return svgo.optimize(file.data, plugins).data;
 };
 
+/**
+ * build symbol node html
+ * @param {object} data - the parse result from the xml2js
+ * @param {string} id - icon name
+ * @return {string}
+ */
 const buildSymbolNode = (data, id) => {
   const symbol = {};
   for (const key in data) {
@@ -66,20 +68,26 @@ const buildSymbolNode = (data, id) => {
     }
   }
   return builder.buildObject({ symbol });
-}
+};
 
-// todo test function
-;(async (rootPath, prefix) => {
-  let svgHtml = '<svg xmlns="http://www.w3.org/2000/svg" id="__MO_ICONS__" style="display:none">';
-  const svgList = packageSvgList(rootPath, prefix);
-  for (const file of svgList) {
-    const parseResult = await xml2js.parseStringPromise(optimize(file), {
+/**
+ * Assembles the contents of all SVG files in the specified directory into an HTML string.
+ * @param {string} rootPath - The directory where the SVG files are stored.
+ * @param {string=} prefix - The ID prefix of icon, default is `mo`.
+ * @return {Promise<string>}
+ */
+const core = async (rootPath, prefix='mo') => {
+  let SVGHtml = '<svg xmlns="http://www.w3.org/2000/svg" id="__MO_ICONS__" style="display:none">';
+  const payloadList = packagePayloadList(rootPath, prefix);
+  for (const payload of payloadList) {
+    const parseResult = await xml2js.parseStringPromise(optimize(payload), {
       explicitRoot: false,
     });
-    const result = buildSymbolNode(parseResult, file.id);
-    svgHtml += result;
+    const str = buildSymbolNode(parseResult, payload.id);
+    SVGHtml += str;
   }
-  svgHtml += '</svg>';
-  svgHtml = minify(svgHtml, { collapseWhitespace: true });
-  console.log(svgHtml);
-})(path.resolve(__dirname, '../examples/svg/'), 'mo');
+  SVGHtml += '</svg>';
+  return minify(SVGHtml, { collapseWhitespace: true });
+};
+
+module.exports = core;
