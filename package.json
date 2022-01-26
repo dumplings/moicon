@@ -23,7 +23,8 @@
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
     "nodemon": "^2.0.15",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "rollup": "^2.66.1"
   },
   "pre-commit": [
     "lint"
