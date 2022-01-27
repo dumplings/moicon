@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const argv = require('yargs/yargs')(process.argv.slice(2))
-    .usage('$0 <input> <output> [options]', 'Package the SVG file and generate the JS file', (yargs) => {
+    .usage('$0 <input> <output> [options]', 'Commands to compile SVG files', (yargs) => {
       yargs.positional('input', { describe: 'Directory for SVG files', type: 'string' })
           .positional('output', { describe: 'Output directory of js file', type: 'string' });
     })
