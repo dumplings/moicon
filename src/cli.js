@@ -1,17 +1,15 @@
 #!/usr/bin/env node
-// create uuid by content
-// const { v5: uuidv5 } = require('uuid');
-const yargs = require('yargs');
+const argv = require('yargs/yargs')(process.argv.slice(2))
+    .usage('$0 <input> <output> [options]', 'Package the SVG file and generate the JS file', (yargs) => {
+      yargs.positional('input', { describe: 'Directory for SVG files', type: 'string' })
+          .positional('output', { describe: 'Output directory of js file', type: 'string' });
+    })
+    .options({
+      name: { alias: 'n', describe: 'Output file name', type: 'string' },
+      hash: { describe: 'Disable the hash', type: 'boolean' },
+    })
+    .alias('h', 'help')
+    .alias('v', 'version')
+    .argv;
 
-const argvs = process.argv.slice(2);
-// const filepath = argvs[0];
-// const output = argvs[1] || process.cwd();
-// const uuid = uuidv5('moicon', 'helloworld');
-// const filename = argvs[2] || `moicon.script.${uuid}.js`;
-console.log(argvs, yargs(argvs).option('f', {
-  alias: 'file',
-  demandOption: true,
-  default: '/etc/passwd',
-  describe: 'x marks the spot',
-  type: 'string',
-}).help('help').locale('en').argv);
+console.log(argv);
