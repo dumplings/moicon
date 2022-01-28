@@ -2,10 +2,13 @@
   "name": "moicon",
   "version": "0.0.1",
   "description": "A modern solution for using SVG icons.",
-  "main": "index.js",
+  "main": "src/core.js",
   "scripts": {
     "dev": "nodemon src/test.js",
     "lint": "eslint . --ext .ts,.js --fix"
+  },
+  "bin": {
+    "moicon": "./src/cli.js"
   },
   "repository": {
     "type": "git",
@@ -30,8 +33,11 @@
     "lint"
   ],
   "dependencies": {
+    "chalk": "^4.1.2",
     "html-minifier": "^4.0.0",
+    "md5": "^2.3.0",
     "svgo": "^2.8.0",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.4.23",
+    "yargs": "^17.3.1"
   }
 }

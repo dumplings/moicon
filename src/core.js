@@ -17,7 +17,7 @@ const packagePayloadList = (filepath, prefix) => {
 
   for (const file of files) {
     if (!file.isFile() || path.extname(file.name) !== '.svg') continue;
-    // detect the colorful flag by file name with the `.c.svg` suffix.
+    // detect the colorful flag by builder name with the `.c.svg` suffix.
     const colorful = /\.c.svg$/.test(file.name);
     const data = fs.readFileSync(path.join(filepath, file.name), { encoding: 'utf8' });
     // delete the colorful flag from filename
