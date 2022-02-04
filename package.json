@@ -2,7 +2,7 @@
   "name": "moicon",
   "version": "0.0.1",
   "description": "A modern solution for using SVG icons.",
-  "main": "src/core.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/test.js",
     "lint": "eslint . --ext .ts,.js --fix"

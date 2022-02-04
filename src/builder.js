@@ -11,25 +11,10 @@ const logger = require('./logger');
  * @param {string} prefix - class prefix
  * @return string
  */
-const template = (content, prefix) => `(function(doc){
-  if (!doc) return;
-  function ready (fn) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fn);
-    } else {
-      fn();
-    }
-  }
-  function appendSvg () {
-    doc.body.insertAdjacentHTML('afterbegin', '${content}');
-  }
-  var existing = doc.getElementById('__MO_ICONS__');
-  if (existing) return;
-  ready(appendSvg);
-  var style = doc.createElement('style');
-  style.innerHTML = '.${prefix}-icon { display: inline-block; width: 1em; height: 1em; stroke-width: 0; fill: currentColor; transition: all .3s cubic-bezier(.18,.89,.32,1.28); }';
-  doc.head.appendChild(style);
-})(document)`;
+const template = (content, prefix) => {
+  const cssStr = require('../templates/cssStr')(prefix);
+  return require('../templates/script')(content, cssStr);
+};
 
 /**
  * @param {BuilderSpec} options

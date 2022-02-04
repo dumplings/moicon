@@ -27,12 +27,10 @@ if (!fs.existsSync(input)) {
   process.exit(1);
 }
 
-// const content =
-// todo abstract the name func with argv.name and argv.hash for other scene
 builder({
   input,
   output,
   prefix: argv.prefix,
   name: argv.name,
   hash: argv.hash,
-}).then(() => console.log('todo finish'));
+}).then(() => logger.info('moicon script finish'));
