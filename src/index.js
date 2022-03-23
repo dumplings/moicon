@@ -1,1 +1,1 @@
-exports.viteIcon = require('./vitePlugin');
+exports.vitePlugin = require('./vitePlugin');

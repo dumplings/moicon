@@ -8,7 +8,7 @@ const cssStr = require('../templates/cssStr');
  * @param {string=} prefix - Icon class prefix, default is `mo`.
  * @returns {string|{transformIndexHtml(string): string, name: string}}
  */
-const iconPlugin = (filepath, prefix) => {
+const iconPlugin = (filepath, prefix = 'mo') => {
   return {
     name: 'icon-plugin',
     /**
