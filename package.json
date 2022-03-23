@@ -1,6 +1,6 @@
 {
   "name": "moicon",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A modern solution for using SVG icons.",
   "main": "src/index.js",
   "scripts": {
