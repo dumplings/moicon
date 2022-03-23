@@ -10,6 +10,7 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 13,
+    sourceType: 'module',
   },
   rules: {
     'quote-props': ['error', 'as-needed'],

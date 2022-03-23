@@ -16,6 +16,11 @@ $ npm install moicon
 
 ## Usage
 
+### Colorful Config
+
+If you want SVG icons to be colored and not be controlled by CSS, you can add `.c` to the suffix of the SVG file name,
+like `heart.c.svg`.
+
 ### Command Line
 
 Inline script file can be generated from the command line using `moicon`.
@@ -47,3 +52,43 @@ Options:
 ```
 
 ### Vite Plugin
+
+```javascript
+// vite.config.js
+import { vitePlugin } from 'moicon'
+
+export default {
+  plugins: [
+    vue(),
+    vitePlugin(svgFilesPath, svgClassPrefix),
+  ]
+}
+```
+
+#### Options
+
+* `svgFilesPath` - Directory of SVG files, required.
+* `svgClassPrefix` - The class prefix of svg tags, default is `mo`.
+
+#### Examples
+
+```vue
+// create a `MoIcon.vue` file by yourself.
+// MoIcon.vue
+<template>
+  <svg class="mo-icon">
+    <use :href="`#mo-${name}`" />
+  </svg>
+</template>
+<script>
+export default {
+  name: 'MoIcon',
+  props: {
+    name: {type:String, default: null, required: true}
+  }
+}
+</script>
+
+// App.vue
+<mo-icon name="add" />
+```
