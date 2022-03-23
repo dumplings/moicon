@@ -17,6 +17,7 @@ const argv = yargs(process.argv.slice(2))
     })
     .alias('h', 'help')
     .alias('v', 'version')
+    .locale('en')
     .argv;
 
 const input = path.join(process.cwd(), argv.input);
@@ -27,7 +28,6 @@ if (!fs.existsSync(input)) {
   process.exit(1);
 }
 
-// const content =
 // todo abstract the name func with argv.name and argv.hash for other scene
 builder({
   input,
@@ -35,4 +35,4 @@ builder({
   prefix: argv.prefix,
   name: argv.name,
   hash: argv.hash,
-}).then(() => console.log('todo finish'));
+}).then((filepath) => logger.info('Finished: ', filepath));

@@ -1,1 +1,4 @@
 examples
+.idea
+.vscode
+.DS_Store

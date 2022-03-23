@@ -33,7 +33,7 @@ const template = (content, prefix) => `(function(doc){
 
 /**
  * @param {BuilderSpec} options
- * @return {Promise<void>}
+ * @return {Promise<string>}
  */
 const builder = async (options) => {
   const content = await core(options.input, options.prefix);
@@ -45,7 +45,9 @@ const builder = async (options) => {
     logger.warn(`The input directory[${output}] does not exist.`);
     fs.mkdirSync(output, { recursive: true });
   }
-  fs.writeFileSync(path.join(options.output, filename), template(content, options.prefix));
+  const filepath = path.join(options.output, filename);
+  fs.writeFileSync(filepath, template(content, options.prefix));
+  return filepath;
 };
 
 module.exports = builder;
