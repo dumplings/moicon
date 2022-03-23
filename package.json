@@ -1,13 +1,20 @@
 {
   "name": "moicon",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A modern solution for using SVG icons.",
   "main": "src/core.js",
   "scripts": {
     "dev": "nodemon src/test.js",
     "lint": "eslint . --ext .ts,.js --fix"
   },
-  "keywords": ["svg", "icon", "icon-svg", "svg-icon", "moicon", "modern"],
+  "keywords": [
+    "svg",
+    "icon",
+    "icon-svg",
+    "svg-icon",
+    "moicon",
+    "modern"
+  ],
   "bin": {
     "moicon": "./src/cli.js"
   },
